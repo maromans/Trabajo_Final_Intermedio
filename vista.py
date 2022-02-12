@@ -142,66 +142,72 @@ class Aplicacion:
         self.numberId.grid(row=2, column=1, pady=3, sticky=E, padx=6)
         self.numberId.insert(0, "Ingrese AQUI su DNI...")
         self.numberId.configure(state=DISABLED)
-        self.numberId.bind("<Button-1>", lambda event: self.onclick())
+        self.numberId.bind("<Button-1>", lambda event: self.onclick0())
         
         self.lastName = Entry(
             self.frame, textvariable=self.apellido, width=30, bd=3)
         self.lastName.grid(row=3, column=1, pady=3, sticky=E, padx=6)
         self.lastName.insert(0, "Ingrese AQUI su Apellido...")
         self.lastName.configure(state=DISABLED)
-        self.lastName.bind("<Button-1>", lambda event: self.onclick())
+        self.lastName.bind("<Button-1>", lambda event: self.onclick1())
         
         self.name = Entry(
             self.frame, textvariable=self.nombre, width=30, bd=3)
         self.name.grid(row=4, column=1, pady=3, sticky=E, padx=6)
         self.name.insert(0, "Ingrese AQUI su Nombre...")
         self.name.configure(state=DISABLED)
-        self.name.bind("<Button-1>", lambda event: self.onclick())
+        self.name.bind("<Button-1>", lambda event: self.onclick2())
         
         self.adress = Entry(
             self.frame, textvariable=self.direccion, width=30, bd=3)
         self.adress.grid(row=5, column=1, pady=3, sticky=E, padx=6)
         self.adress.insert(0, "Ingrese AQUI su Direccion...")
         self.adress.configure(state=DISABLED)
-        self.adress.bind("<Button-1>", lambda event: self.onclick())
+        self.adress.bind("<Button-1>", lambda event: self.onclick3())
         
         self.city = Entry(
             self.frame, textvariable=self.localidad, width=30, bd=3)
         self.city.grid(row=6, column=1, pady=3, sticky=W, padx=6)
         self.city.insert(0, "Ingrese AQUI su Localidad...")
         self.city.configure(state=DISABLED)
-        self.city.bind("<Button-1>", lambda event: self.onclick())
+        self.city.bind("<Button-1>", lambda event: self.onclick4())
         
         self.phone = Entry(
             self.frame, textvariable=self.telefono, width=30, bd=3)
         self.phone.grid(row=7, column=1, pady=3, sticky=W, padx=6)
         self.phone.insert(0, "Ejemplo: +541112345678")
         self.phone.configure(state=DISABLED)
-        self.phone.bind("<Button-1>", lambda event: self.onclick())
+        self.phone.bind("<Button-1>", lambda event: self.onclick5())
         
         self.mailId = Entry(
             self.frame, textvariable=self.email, width=30, bd=3)
         self.mailId.grid(row=8, column=1, pady=3, sticky=W, padx=6)
         self.mailId.insert(0, "xxxxx@xxx.xxx")
         self.mailId.configure(state=DISABLED)
-        self.mailId.bind("<Button-1>", lambda event: self.onclick())
+        self.mailId.bind("<Button-1>", lambda event: self.onclick6())
         
         
        
 
-    def onclick(self):
+    def onclick0(self):
         self.numberId.configure(state=NORMAL)
         self.numberId.delete(0, END)
-        self.phone.configure(state=NORMAL)
-        self.phone.delete(0, END)
-        self.name.configure(state=NORMAL)
-        self.name.delete(0, END)
+    def onclick1(self):
         self.lastName.configure(state=NORMAL)
         self.lastName.delete(0, END)
+    def onclick2(self):
+        self.name.configure(state=NORMAL)
+        self.name.delete(0, END)
+    def onclick3(self):    
         self.adress.configure(state=NORMAL)
         self.adress.delete(0, END)
+    def onclick4(self):    
         self.city.configure(state=NORMAL)
         self.city.delete(0, END)
+    def onclick5(self):    
+        self.phone.configure(state=NORMAL)
+        self.phone.delete(0, END)
+    def onclick6(self):
         self.mailId.configure(state=NORMAL)
         self.mailId.delete(0, END)
 
