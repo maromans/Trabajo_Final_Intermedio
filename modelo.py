@@ -126,7 +126,7 @@ class control:
 
         except:
             self.colorRojo()
-            self.x.set("Ud. no ingreso ningun Dni")
+            self.x.set("Ud. no ingreso ningun DNI")
 
     # Funcion para buscar un contacto
 
