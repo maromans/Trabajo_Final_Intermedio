@@ -124,13 +124,6 @@ class Aplicacion:
             row=6, column=1, pady=3, sticky=W, padx=6
         )
 
-        self.phone = Entry(
-            self.frame, textvariable=self.telefono, width=30, bd=3)
-        self.phone.grid(row=7, column=1, pady=3, sticky=W, padx=6)
-        self.phone.insert(0, "Ejemplo: +541112345678")
-        self.phone.configure(state=DISABLED)
-        self.phone.bind("<Button-1>", lambda event: self.onclick())
-
         Entry(self.frame, textvariable=self.email, width=30, bd=3).grid(
             row=8, column=1, pady=3, sticky=W, padx=6
         )
@@ -141,10 +134,76 @@ class Aplicacion:
             fg="black", bg="LightSteelBlue", font=("Verdana", 10), width=6
         )  # Foreground  # Background
         self.entrada3.grid(row=12, column=0, pady=4, columnspan=2, ipadx=300)
+        
+        # placeholders para los Campos
+        
+        self.numberId = Entry(
+            self.frame, textvariable=self.dni, width=30, bd=3)
+        self.numberId.grid(row=2, column=1, pady=3, sticky=E, padx=6)
+        self.numberId.insert(0, "Ingrese AQUI su DNI...")
+        self.numberId.configure(state=DISABLED)
+        self.numberId.bind("<Button-1>", lambda event: self.onclick())
+        
+        self.lastName = Entry(
+            self.frame, textvariable=self.apellido, width=30, bd=3)
+        self.lastName.grid(row=3, column=1, pady=3, sticky=E, padx=6)
+        self.lastName.insert(0, "Ingrese AQUI su Apellido...")
+        self.lastName.configure(state=DISABLED)
+        self.lastName.bind("<Button-1>", lambda event: self.onclick())
+        
+        self.name = Entry(
+            self.frame, textvariable=self.nombre, width=30, bd=3)
+        self.name.grid(row=4, column=1, pady=3, sticky=E, padx=6)
+        self.name.insert(0, "Ingrese AQUI su Nombre...")
+        self.name.configure(state=DISABLED)
+        self.name.bind("<Button-1>", lambda event: self.onclick())
+        
+        self.adress = Entry(
+            self.frame, textvariable=self.direccion, width=30, bd=3)
+        self.adress.grid(row=5, column=1, pady=3, sticky=E, padx=6)
+        self.adress.insert(0, "Ingrese AQUI su Direccion...")
+        self.adress.configure(state=DISABLED)
+        self.adress.bind("<Button-1>", lambda event: self.onclick())
+        
+        self.city = Entry(
+            self.frame, textvariable=self.localidad, width=30, bd=3)
+        self.city.grid(row=6, column=1, pady=3, sticky=W, padx=6)
+        self.city.insert(0, "Ingrese AQUI su Localidad...")
+        self.city.configure(state=DISABLED)
+        self.city.bind("<Button-1>", lambda event: self.onclick())
+        
+        self.phone = Entry(
+            self.frame, textvariable=self.telefono, width=30, bd=3)
+        self.phone.grid(row=7, column=1, pady=3, sticky=W, padx=6)
+        self.phone.insert(0, "Ejemplo: +541112345678")
+        self.phone.configure(state=DISABLED)
+        self.phone.bind("<Button-1>", lambda event: self.onclick())
+        
+        self.mailId = Entry(
+            self.frame, textvariable=self.email, width=30, bd=3)
+        self.mailId.grid(row=8, column=1, pady=3, sticky=W, padx=6)
+        self.mailId.insert(0, "xxxxx@xxx.xxx")
+        self.mailId.configure(state=DISABLED)
+        self.mailId.bind("<Button-1>", lambda event: self.onclick())
+        
+        
+       
 
     def onclick(self):
+        self.numberId.configure(state=NORMAL)
+        self.numberId.delete(0, END)
         self.phone.configure(state=NORMAL)
         self.phone.delete(0, END)
+        self.name.configure(state=NORMAL)
+        self.name.delete(0, END)
+        self.lastName.configure(state=NORMAL)
+        self.lastName.delete(0, END)
+        self.adress.configure(state=NORMAL)
+        self.adress.delete(0, END)
+        self.city.configure(state=NORMAL)
+        self.city.delete(0, END)
+        self.mailId.configure(state=NORMAL)
+        self.mailId.delete(0, END)
 
     def arbol(self):
         # defino la tabla donde se veran los datos
