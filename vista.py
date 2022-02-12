@@ -5,8 +5,6 @@ from tkinter import ttk
 import modelo
 
 
-
-
 class Aplicacion:
     def __init__(self, root) -> None:
         self.master = root
@@ -125,9 +123,12 @@ class Aplicacion:
             row=6, column=1, pady=3, sticky=W, padx=6
         )
 
-        Entry(self.frame, textvariable=self.telefono, width=30, bd=3).grid(
-            row=7, column=1, pady=3, sticky=W, padx=6
-        )
+        self.phone = Entry(self.frame, textvariable=self.telefono, width=30, bd=3)
+        self.phone.grid(row=7, column=1, pady=3, sticky=W, padx=6)
+        self.phone.insert(0, "+54xxxxxxxxxx")
+        self.phone.configure(state=DISABLED)
+        self.phone.bind("<Button-1>", lambda event: self.onclick())
+
         Entry(self.frame, textvariable=self.email, width=30, bd=3).grid(
             row=8, column=1, pady=3, sticky=W, padx=6
         )
@@ -138,6 +139,10 @@ class Aplicacion:
             fg="black", bg="LightSteelBlue", font=("Verdana", 10), width=6
         )  # Foreground  # Background
         self.entrada3.grid(row=12, column=0, pady=4, columnspan=2, ipadx=300)
+
+    def onclick(self):
+        self.phone.configure(state=NORMAL)
+        self.phone.delete(0, END)
 
     def arbol(self):
         # defino la tabla donde se veran los datos
@@ -272,4 +277,3 @@ class Aplicacion:
             activeforeground="snow2",
         )
         self.reset.grid(row=11, column=1, pady=12, columnspan=1, sticky=N)
-
