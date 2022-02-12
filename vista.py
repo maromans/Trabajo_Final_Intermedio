@@ -38,7 +38,8 @@ class Aplicacion:
 
     def ventana(self):
 
-        self.master.title("Trabajo Final - Nivel Inicial - Diplomatura en Python")
+        self.master.title(
+            "Trabajo Final - Nivel Inicial - Diplomatura en Python")
         self.master.resizable(False, False)
         self.master.config(bd=20)
 
@@ -123,7 +124,8 @@ class Aplicacion:
             row=6, column=1, pady=3, sticky=W, padx=6
         )
 
-        self.phone = Entry(self.frame, textvariable=self.telefono, width=30, bd=3)
+        self.phone = Entry(
+            self.frame, textvariable=self.telefono, width=30, bd=3)
         self.phone.grid(row=7, column=1, pady=3, sticky=W, padx=6)
         self.phone.insert(0, "Ejemplo: +541112345678")
         self.phone.configure(state=DISABLED)
@@ -147,7 +149,8 @@ class Aplicacion:
     def arbol(self):
         # defino la tabla donde se veran los datos
         self.tabla = ttk.Treeview(
-            self.master, columns=("uno", "dos", "tres", "cuatro", "cinco", "seis")
+            self.master, columns=("uno", "dos", "tres",
+                                  "cuatro", "cinco", "seis")
         )
         self.tabla.column("#0", width=100, minwidth=70)
         self.tabla.column("uno", width=100, minwidth=70)
@@ -172,7 +175,8 @@ class Aplicacion:
         )
         self.estilo = ttk.Style(self.master)
         self.estilo.theme_use("alt")
-        self.estilo.configure(".", font=("Helvetica", 12, "bold"), foreground="black")
+        self.estilo.configure(".", font=(
+            "Helvetica", 12, "bold"), foreground="black")
         self.estilo.configure(
             "Treeview", font=("Helvetica", 10), foreground="black", background="white"
         )
