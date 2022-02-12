@@ -140,35 +140,35 @@ class Aplicacion:
         self.numberId = Entry(
             self.frame, textvariable=self.dni, width=30, bd=3)
         self.numberId.grid(row=2, column=1, pady=3, sticky=E, padx=6)
-        self.numberId.insert(0, "Ingrese AQUI su DNI...")
+        self.numberId.insert(0, "Ingrese AQUI el DNI...")
         self.numberId.configure(state=DISABLED)
         self.numberId.bind("<Button-1>", lambda event: self.onclick0())
         
         self.lastName = Entry(
             self.frame, textvariable=self.apellido, width=30, bd=3)
         self.lastName.grid(row=3, column=1, pady=3, sticky=E, padx=6)
-        self.lastName.insert(0, "Ingrese AQUI su Apellido...")
+        self.lastName.insert(0, "Ingrese AQUI el Apellido...")
         self.lastName.configure(state=DISABLED)
         self.lastName.bind("<Button-1>", lambda event: self.onclick1())
         
         self.name = Entry(
             self.frame, textvariable=self.nombre, width=30, bd=3)
         self.name.grid(row=4, column=1, pady=3, sticky=E, padx=6)
-        self.name.insert(0, "Ingrese AQUI su Nombre...")
+        self.name.insert(0, "Ingrese AQUI el Nombre...")
         self.name.configure(state=DISABLED)
         self.name.bind("<Button-1>", lambda event: self.onclick2())
         
         self.adress = Entry(
             self.frame, textvariable=self.direccion, width=30, bd=3)
         self.adress.grid(row=5, column=1, pady=3, sticky=E, padx=6)
-        self.adress.insert(0, "Ingrese AQUI su Direccion...")
+        self.adress.insert(0, "Ingrese AQUI la Direccion...")
         self.adress.configure(state=DISABLED)
         self.adress.bind("<Button-1>", lambda event: self.onclick3())
         
         self.city = Entry(
             self.frame, textvariable=self.localidad, width=30, bd=3)
         self.city.grid(row=6, column=1, pady=3, sticky=W, padx=6)
-        self.city.insert(0, "Ingrese AQUI su Localidad...")
+        self.city.insert(0, "Ingrese AQUI la Localidad...")
         self.city.configure(state=DISABLED)
         self.city.bind("<Button-1>", lambda event: self.onclick4())
         
