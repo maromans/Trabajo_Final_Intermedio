@@ -135,8 +135,8 @@ class Aplicacion:
         )  # Foreground  # Background
         self.entrada3.grid(row=12, column=0, pady=4, columnspan=2, ipadx=300)
         
-        # placeholders para los Campos
         
+        # placeholders para los Campos        
         self.numberId = Entry(
             self.frame, textvariable=self.dni, width=30, bd=3)
         self.numberId.grid(row=2, column=1, pady=3, sticky=E, padx=6)
@@ -187,7 +187,7 @@ class Aplicacion:
         self.mailId.bind("<Button-1>", lambda event: self.onclick6())
         
         
-       
+    # Defino Funciones para Desactivar el Placeholder de los Campos
 
     def onclick0(self):
         self.numberId.configure(state=NORMAL)
@@ -210,6 +210,7 @@ class Aplicacion:
     def onclick6(self):
         self.mailId.configure(state=NORMAL)
         self.mailId.delete(0, END)
+        
 
     def arbol(self):
         # defino la tabla donde se veran los datos
