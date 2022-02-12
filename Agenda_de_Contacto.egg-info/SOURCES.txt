@@ -1,5 +1,0 @@
-setup.py
-Agenda_de_Contacto.egg-info/PKG-INFO
-Agenda_de_Contacto.egg-info/SOURCES.txt
-Agenda_de_Contacto.egg-info/dependency_links.txt
-Agenda_de_Contacto.egg-info/top_level.txt
