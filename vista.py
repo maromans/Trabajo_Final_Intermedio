@@ -125,7 +125,7 @@ class Aplicacion:
 
         self.phone = Entry(self.frame, textvariable=self.telefono, width=30, bd=3)
         self.phone.grid(row=7, column=1, pady=3, sticky=W, padx=6)
-        self.phone.insert(0, "+54xxxxxxxxxx")
+        self.phone.insert(0, "Ejemplo: +541112345678")
         self.phone.configure(state=DISABLED)
         self.phone.bind("<Button-1>", lambda event: self.onclick())
 
