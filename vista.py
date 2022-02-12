@@ -57,6 +57,14 @@ class Aplicacion:
             foreground="black",
             width=80,
         ).grid(row=0, column=0, columnspan=2, pady=10)
+        
+        Label(
+            self.master,
+            text="* Debe completar todos los Campos.!",
+            #background="Green",
+            foreground="Black",
+            width=80,
+        ).grid(row=3, column=0, columnspan=2, pady=10)
 
         # Imagen
         Label(self.master, image=self.imagen).grid(row=2, column=1, sticky=E)
@@ -68,7 +76,7 @@ class Aplicacion:
             background="LightSteelBlue",
             foreground="black",
             width=80,
-        ).grid(row=3, column=0, columnspan=2, pady=10)
+        ).grid(row=4, column=0, columnspan=2, pady=10)
 
         # En esta seccion estan los Label donde figura el Nombre de cada Campo
         Label(self.frame, text="D.N.I.", bg="LightSteelBlue").grid(
