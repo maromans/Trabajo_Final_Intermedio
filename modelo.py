@@ -1,17 +1,21 @@
-
 import sqlite3
 from sqlite3 import Error
 import re
 
 
 class Conectando:
+    """Defino funciones para conectar y crear base de datos y tabla."""
 
-    # Defino funciones para conectar y crear base de datos y tabla
-    def conectar(self):
+    @classmethod
+    def conectar(cls):
+        """Metodo para iniciar conexión."""
+
         con = sqlite3.connect("Agenda_Contacto")
         return con
 
     def crear_bbdd(self):
+        """Metodo para crear la base de datos."""
+
         try:
             self.conectar()
             print("Base de Dato Agenda_Contacto")
@@ -20,18 +24,24 @@ class Conectando:
         finally:
             self.conectar().close()
 
-    def cursorObj(self):
+    def cursor_obj(self):
+        """Metodo para crear el cursor."""
+
         return self.conectar().cursor()
 
     def crear_tabla(self):
-        self.cursorObj().execute(
+        """Metodo para crear la tabla."""
+
+        self.cursor_obj().execute(
             "CREATE TABLE IF NOT EXISTS entidad(id INTEGER PRIMARY KEY AUTOINCREMENT, DNI integer(8) NOT NULL, Apellido VARCHAR(128) NOT NULL, Nombre VARCHAR(128) NOT NULL, Direccion VARCHAR(128) NOT NULL, Localidad VARCHAR(128) NOT NULL, Telefono VARCHAR(15) NOT NULL, Email VARCHAR(128) NOT NULL)"
         )
         self.conectar().commit()
         self.conectar().close()
 
 
-class control:
+class Control:
+    """Definimos los metodos para los buttons."""
+
     def __init__(
         self,
         entrada3,
@@ -47,7 +57,7 @@ class control:
         tabla,
     ):
         self.entrada3 = entrada3
-        self.x = ingreso
+        self.ing = ingreso
         self.con = con
         self.dni = dni
         self.apellido = apellido
@@ -59,26 +69,34 @@ class control:
         self.tabla = tabla
 
     # Definimos una Funcion para cambiar las Caracteristicas del Label
-    def colorNegro(self):
+    def color_negro(self):
+        """Metodo de cambio de color en el mensaje a negro."""
+
         self.entrada3.config(
             fg="black", bg="LightSteelBlue", font=("Verdana", 10), width=6
         )
 
-    def colorRojo(self):
+    def color_rojo(self):
+        """Metodo de cambio de color en el mensaje a rojo."""
+
         self.entrada3.config(
             fg="red", bg="Yellow", font=("Verdana", 10, "bold"), width=6
         )
 
     # Funcion para cargar un contacto
     def callback(self):
+        """Metodo para ingresar un nuevo valor."""
+
         try:
             if self.dni.get() != "":
-                if self.comparar_dni() == False:
+                if self.comparar_dni() is False:
                     # Definimos la Validacion del EMail.!
                     patron = r"([\w\.-]+)@([\w\.-]+)(\.[\w\.]+)"
                     if re.match(patron, self.email.get()):
                         # Definimos la Validacion del Telefono iniciando con +1111111111.!
-                        patron2 = r"^(\(?\+[\d]{1,3}\)?)\s?([\d]{1,5})\s?([\d][\s\.-]?){6,7}$"
+                        patron2 = (
+                            r"^(\(?\+[\d]{1,3}\)?)\s?([\d]{1,5})\s?([\d][\s\.-]?){6,7}$"
+                        )
                         if re.match(patron2, self.telefono.get()):
                             con = sqlite3.connect("Agenda_Contacto")
                             micursor = con.cursor()
@@ -94,8 +112,8 @@ class control:
                             )
                             micursor.execute(sql, datos)
                             con.commit()
-                            self.colorNegro()
-                            self.x.set("Ud. Agrego al siguiente Contacto:")
+                            self.color_negro()
+                            self.ing.set("Ud. Agrego al siguiente Contacto:")
                             self.tabla.insert(
                                 "",
                                 "end",
@@ -111,22 +129,21 @@ class control:
                             )
                             self.limpiar_entries()
                         else:
-                            self.colorRojo()
-                            self.x.set("El Telefono Ingresado no es Valido")
+                            self.color_rojo()
+                            self.ing.set("El Telefono Ingresado no es Valido")
                     else:
-                        self.colorRojo()
-                        self.x.set("La Direccion de Mail NO es Valida")
+                        self.color_rojo()
+                        self.ing.set("La Direccion de Mail NO es Valida")
                 else:
-                    self.colorRojo()
-                    self.x.set("Ya existe ese Registro")
+                    self.color_rojo()
+                    self.ing.set("Ya existe ese Registro")
             else:
-                self.colorRojo()
-                self.x.set("Ya existe ese Registro")
+                self.color_rojo()
+                self.ing.set("Ya existe ese Registro")
                 print("no2")
-
         except:
-            self.colorRojo()
-            self.x.set("Ud. no ingreso ningun DNI")
+            self.color_rojo()
+            self.ing.set("Ud. no ingreso ningun DNI")
 
     # Funcion para buscar un contacto
 
@@ -143,22 +160,22 @@ class control:
             self.registro = self.micursor.fetchall()
             if not self.registro == []:
                 self.limpiar_tabla()
-                self.x.set(f"{self.registro}")
+                self.ing.set(f"{self.registro}")
                 i = -1
                 for dato in self.registro:
                     i = i + 1
                     self.tabla.insert(
                         "", i, text=self.registro[i][1:2], values=self.registro[i][2:8]
                     )
-                self.colorNegro()
-                self.x.set("Se encontraron los siguientes contactos.")
+                self.color_negro()
+                self.ing.set("Se encontraron los siguientes contactos.")
 
             else:
-                self.colorRojo()
-                self.x.set("No se encontro el contacto.")
+                self.color_rojo()
+                self.ing.set("No se encontro el contacto.")
         except:
-            self.colorRojo()
-            self.x.set("No se encontro el contacto.")
+            self.color_rojo()
+            self.ing.set("No se encontro el contacto.")
 
     # Funcion para modificar un contacto
 
@@ -166,7 +183,7 @@ class control:
         self.patron = r"([\w\.-]+)@([\w\.-]+)(\.[\w\.]+)"
         if re.match(self.patron, self.email.get()):
             self.micursor = self.con.cursor()
-            self.colorNegro()
+            self.color_negro()
             sql = "UPDATE entidad SET (DNI, Apellido, Nombre, Direccion, Localidad, Telefono, EMail)=(?,?,?,?,?,?,?)WHERE DNI=?"
             dato = (
                 self.dni.get(),
@@ -182,17 +199,17 @@ class control:
             self.con.commit()
             self.listar()
             self.limpiar_entries()
-            self.x.set(
+            self.ing.set(
                 f"Se ha modificado el Contacto DNI: {dato[0]}, de Nombre: {dato[2]} {dato[1]}"
             )
         else:
-            self.colorRojo()
-            self.x.set("La Direccion de Mail NO es Valida")
+            self.color_rojo()
+            self.ing.set("La Direccion de Mail NO es Valida")
 
     # Funcion para borrar un contacto
 
     def borrar(self):
-        self.colorNegro()
+        self.color_negro()
         self.fila = self.tabla.selection()
 
         if len(self.fila) != 0:
@@ -204,12 +221,12 @@ class control:
             self.micursor.execute(sql, (self.valor,))
 
             self.con.commit()
-            self.x.set("Se ha borrado el Contacto")
+            self.ing.set("Se ha borrado el Contacto")
             self.tabla.delete(self.fila)
             self.limpiar_entries()
         else:
-            self.colorRojo()
-            self.x.set("No se pudo Borrar el Contacto")
+            self.color_rojo()
+            self.ing.set("No se pudo Borrar el Contacto")
 
     # Funcion para cargar todos los contacto
 
@@ -221,18 +238,18 @@ class control:
         self.registro = self.micursor.fetchall()
 
         if not self.registro == []:
-            self.x.set(f"{self.registro}")
+            self.ing.set(f"{self.registro}")
             i = -1
             for dato in self.registro:
                 i = i + 1
                 self.tabla.insert(
                     "", i, text=self.registro[i][1:2], values=self.registro[i][2:8]
                 )
-            self.colorNegro()
-            self.x.set("Se encontraron los siguientes contactos.")
+            self.color_negro()
+            self.ing.set("Se encontraron los siguientes contactos.")
         else:
-            self.colorRojo()
-            self.x.set("No se encontro el contacto.")
+            self.color_rojo()
+            self.ing.set("No se encontro el contacto.")
 
     # Funcion para cargar en los entry el contacto seleccionado del treview "tabla"
 
@@ -264,7 +281,7 @@ class control:
     # Funcion para limpiar la pantalla
 
     def limpiar_tabla(self):
-        self.x.set("")
+        self.ing.set("")
         self.tabla.delete(*self.tabla.get_children())
         self.limpiar_entries()
 

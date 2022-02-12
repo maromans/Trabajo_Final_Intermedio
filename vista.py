@@ -6,7 +6,9 @@ import modelo
 
 
 class Aplicacion:
-    def __init__(self, root) -> None:
+    """Definimos la clase que conforma la ventana."""
+
+    def __init__(self, root):
         self.master = root
         # Generamos la base de datos
         self.conectado = modelo.Conectando()
@@ -37,6 +39,7 @@ class Aplicacion:
         self.botones()
 
     def ventana(self):
+        """ "Metodo que define la estructura de la ventana."""
 
         self.master.title("Trabajo Final - Nivel Inicial - Diplomatura en Python")
         self.master.resizable(False, False)
@@ -48,7 +51,8 @@ class Aplicacion:
         self.frame.config(bg="LightSteelBlue")
 
     def etiqueta(self):
-        # Encabezado de la Agenda
+        """Encabezado de la Agenda."""
+
         Label(
             self.master,
             text="Ingrese los datos del Nuevo Contacto",
@@ -102,7 +106,8 @@ class Aplicacion:
         ).grid(row=15, column=0, columnspan=2, pady=10)
 
     def entry(self):
-        # En esta seccion encontramos los campos vacios correspondientes a cada Item a llenar
+        """En esta seccion encontramos los campos vacios correspondientes a cada Item a llenar."""
+
         Entry(self.frame, textvariable=self.dni, width=30, bd=3).grid(
             row=2, column=1, pady=3, sticky=W, padx=6
         )
@@ -137,10 +142,12 @@ class Aplicacion:
         self.entrada3 = Label(self.master, bd=4, textvariable=self.ingreso)
         self.entrada3.config(
             fg="black", bg="LightSteelBlue", font=("Verdana", 10), width=6
-        )  # Foreground  # Background
+        )
         self.entrada3.grid(row=12, column=0, pady=4, columnspan=2, ipadx=300)
 
     def onclick(self):
+        """Metodo para evento plaseholder."""
+
         self.phone.configure(state=NORMAL)
         self.phone.delete(0, END)
 
@@ -184,7 +191,7 @@ class Aplicacion:
 
     def funcionamiento(self):
         # Metodo para instanciar las funciones
-        self.funcion = modelo.control(
+        self.funcion = modelo.Control(
             self.entrada3,
             self.ingreso,
             self.con,
@@ -199,11 +206,12 @@ class Aplicacion:
         )
 
     def botones(self):
-        # Definimos el Boton de Agendado
+        """Definimos el Boton de Agendado."""
+
         self.alta = Button(
             self.master,
             text="Agendar",
-            command=lambda: self.funcion.callback(),
+            command=self.funcion.callback(),
             padx=10,
             cursor="hand2",
             bd=4,
